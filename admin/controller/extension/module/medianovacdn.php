@@ -3,6 +3,7 @@
 class Controllerextensionmodulemedianovacdn extends Controller {
 	
 	private $error = array(); 
+	
 	public function index() {
 		$this->load->language('extension/module/medianovacdn');
 
@@ -15,7 +16,7 @@ class Controllerextensionmodulemedianovacdn extends Controller {
 					 
 			$this->session->data['success'] = $this->language->get('text_success');
 						
-			$this->response->redirect($this->url->link('extension/extension', 'token=' . $this->session->data['token'], 'SSL'));
+			$this->response->redirect($this->url->link('marketplace/extension', 'user_token=' . $this->session->data['user_token'] . '&type=module', true));
 		}
 
 		$text_strings = array(
@@ -52,28 +53,28 @@ class Controllerextensionmodulemedianovacdn extends Controller {
 
    		$data['breadcrumbs'][] = array(
        		'text'      => $this->language->get('text_home'),
-			'href'      => $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL'),
+			'href'      => $this->url->link('common/home', 'user_token=' . $this->session->data['user_token'] . '&type=module', true),
       		'separator' => false
    		);
 
    		$data['breadcrumbs'][] = array(
        		'text'      => $this->language->get('text_module'),
-			'href'      => $this->url->link('extension/module', 'token=' . $this->session->data['token'], 'SSL'),
+			'href'      => $this->url->link('extension/module', 'user_token=' . $this->session->data['user_token'] . '&type=module', true),
       		'separator' => ' :: '
    		);
 		
    		$data['breadcrumbs'][] = array(
        		'text'      => $this->language->get('heading_title'),
-			'href'      => $this->url->link('extension/module/medianovacdn', 'token=' . $this->session->data['token'], 'SSL'),
+			'href'      => $this->url->link('extension/module/medianovacdn', 'user_token=' . $this->session->data['user_token'] . '&type=module', true),
       		'separator' => ' :: '
    		);
 		
-		$data['action'] = $this->url->link('extension/module/medianovacdn', 'token=' . $this->session->data['token'], 'SSL');
+		$data['action'] = $this->url->link('extension/module/medianovacdn', 'user_token=' . $this->session->data['user_token'] . '&type=module', true);
 		
-		$data['cancel'] = $this->url->link('extension/module', 'token=' . $this->session->data['token'], 'SSL');
+		$data['cancel'] = $this->url->link('extension/module', 'user_token=' . $this->session->data['user_token'] . '&type=module', true);
 
 	
-		$this->template = 'extension/module/medianovacdn.tpl';
+		$this->template = 'extension/module/medianovacdn';
 		$this->children = array(
 			'common/header',
 			'common/footer',
@@ -83,7 +84,7 @@ class Controllerextensionmodulemedianovacdn extends Controller {
 		$data['column_left'] = $this->load->controller('common/column_left');
 		$data['footer'] = $this->load->controller('common/footer');
 
-		$this->response->setOutput($this->load->view('extension/module/medianovacdn.tpl', $data));
+		$this->response->setOutput($this->load->view('extension/module/medianovacdn', $data));
 	}
 	
 	private function validate() {
